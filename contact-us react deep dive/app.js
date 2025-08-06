@@ -1,37 +1,19 @@
 const express = require("express");
+const rootDir = require('./utils/pathUtil');
+const path = require('path');
+
+const homeRouter = require("./routes/homeRouter");
+const contactRouter = require("./routes/contactRouter");
 
 const app = express();
 
+app.use(express.urlencoded());
 
-app.get("/", (req, res, next) => {
-  console.log("4th middleware", req.url, req.method);
-  res.send(
-    `<h1>Go to contact page</h1>
-    <br>
-    <a href='contact-us'>Contact page</a>`
-  );
-  next();
-});
+app.use(homeRouter);
+app.use(contactRouter);
 
-app.get("/contact-us", (req, res, next) => {
-  console.log("Handling contact-us for GET", req.url, req.method);
-  res.send(`
-    <h1>Give your details here</h1>
-    <form method="POST" action="/contact-us">
-      <input type="text" placeholder="Enter your name" name="Name: "/>
-      <input type="email" placeholder="Enter your email" name="Email: "/>
-      <br>
-      <input type="submit"/>
-    </form>
-    <a href='/'>home page</a>`);
-    next();
-});
-
-app.post("/contact-us", (req, res, next) => {
-  console.log("Handling contact-us for POST", req.url, req.method);
-  res.send(`
-    <h1>We will contact you shortly my guy</h1>
-    `);
+app.use((req,res,next)=>{
+  res.sendFile(path.join(rootDir,"views","404.html"));
 });
 
 const PORT = 3001;
