@@ -1,0 +1,72 @@
+<header class="bg-gray-800 text-white p-4 shadow-md">
+  <nav class="container mx-auto flex justify-center items-center">
+    
+    <!-- 
+      Nav List:
+      - flex: horizontal layout
+      - flex-wrap: allows items to wrap on small screens instead of scrolling
+      - justify-center: centers items horizontally
+      - gap-2: spacing between items
+    -->
+    <ul class="flex flex-wrap justify-center gap-2 w-full">
+      
+      <!-- 
+        Nav Item:
+        - flex-shrink: items shrink naturally if needed
+        - whitespace-nowrap: avoids text breaking mid-word
+        - text-sm: slightly compact text
+        - px/py: control padding
+        - transition: smooth hover effect
+        - EJS dynamic class to highlight active page
+      -->
+      <li class="flex-shrink">
+        <a
+          href="/"
+          class="<%= currentPage === 'index' ? 'bg-gray-700' : 'hover:bg-gray-700' %> py-2 px-4 rounded text-sm whitespace-nowrap transition duration-300"
+        >
+          Airbnb
+        </a>
+      </li>
+      <li class="flex-shrink">
+        <a
+          href="/homes"
+          class="<%= currentPage === 'Home' ? 'bg-gray-700' : 'hover:bg-gray-700' %> py-2 px-4 rounded text-sm whitespace-nowrap transition duration-300"
+        >
+          Homes-list
+        </a>
+      </li>
+      <li class="flex-shrink">
+        <a
+          href="/host/host-home-list"
+          class="<%= currentPage === 'host-homes' ? 'bg-gray-700' : 'hover:bg-gray-700' %> py-2 px-4 rounded text-sm whitespace-nowrap transition duration-300"
+        >
+          Host homes
+        </a>
+      </li>
+      <li class="flex-shrink">
+        <a
+          href="/host/add-home"
+          class="<%= currentPage === 'addHome' ? 'bg-gray-700' : 'hover:bg-gray-700' %> py-2 px-4 rounded text-sm whitespace-nowrap transition duration-300"
+        >
+          Add Home
+        </a>
+      </li>
+      <li class="flex-shrink">
+        <a
+          href="/favourites"
+          class="<%= currentPage === 'favourites' ? 'bg-gray-700' : 'hover:bg-gray-700' %> py-2 px-4 rounded text-sm whitespace-nowrap transition duration-300"
+        >
+          Favourites
+        </a>
+      </li>
+      <li class="flex-shrink">
+        <a
+          href="/bookings"
+          class="<%= currentPage === 'bookings' ? 'bg-gray-700' : 'hover:bg-gray-700' %> py-2 px-4 rounded text-sm whitespace-nowrap transition duration-300"
+        >
+          Bookings
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
