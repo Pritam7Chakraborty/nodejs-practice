@@ -7,8 +7,8 @@ const errorsController = require("./controller/errors");
 
 const app = express();
 
+app.set("views", path.join((rootDir, "views")));
 app.set("view engine", "ejs");
-app.set("views", "views");
 
 //BODY PERSER
 app.use(express.urlencoded({ extended: true }));

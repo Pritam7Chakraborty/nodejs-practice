@@ -16,7 +16,7 @@
 
               <!-- Image -->
               <div class="h-64 overflow-hidden">
-                <img src="/house.jpg" alt="House Image"
+                <img src="<%= home.photo %>" alt="House Image"
                   class="w-full h-full object-cover transform hover:scale-105 transition duration-500" />
               </div>
 
@@ -38,17 +38,19 @@
                     </span>
                   </div>
                 </div>
-
-                <!-- Book Button -->
-                <div class="flex gap-4">
-                  <button type="button"
+                <!-- Edit Button -->
+                <div class="flex gap-4 text-center">
+                  <a href="/host/edit-home/<%= home.id %>?editing=true"
                     class="w-25 bg-blue-600 text-white p-2 text-sm rounded-lg hover:bg-blue-700 transition duration-300">
                     Edit
-                  </button>
-                  <button type="button"
-                    class="w-25 bg-red-600 text-white p-2 text-sm rounded-lg hover:bg-red-700 transition duration-300">
-                    Delete
-                  </button>
+                  </a>
+                  <!-- Delete Button -->
+                  <form action="/host/delete-home/<%=home.id%>" method="post">
+                    <button type="submit"
+                      class="w-25 bg-red-600 text-white p-2 text-sm rounded-lg hover:bg-red-700 transition duration-300">
+                      Delete
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
