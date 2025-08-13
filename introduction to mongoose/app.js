@@ -4,7 +4,7 @@ const hostRouter = require("./routes/hostRouter");
 const rootDir = require("./utils/pathUtil");
 const path = require("path");
 const errorsController = require("./controller/errors");
-const {mongoConnect} = require("./utils/databaseUtil");
+const { default: mongoose } = require("mongoose");
 
 const app = express();
 
@@ -21,9 +21,17 @@ app.use(express.static(path.join(rootDir, "public")));
 app.use(errorsController.pageNotFound);
 
 const PORT = 3001;
-mongoConnect(() => {
-  console.log("MongoDB connected successfully!");
-  app.listen(PORT, () => {
-    console.log(`Server running on address http://localhost:${PORT}`);
+const DB_PATH =
+  "mongodb+srv://root:root@cluster0.qcw2wf8.mongodb.net/airbnb?retryWrites=true&w=majority&appName=Cluster0";
+
+mongoose
+  .connect(DB_PATH)
+  .then(() => {
+    console.log("MongoDB connected successfully!");
+    app.listen(PORT, () => {
+      console.log(`Server running on address http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("Error while connecting to MongoDB:", err);
   });
-});
