@@ -1,0 +1,62 @@
+<%- include('../partials/head') %>
+  </head>
+
+  <body class="bg-gray-900 text-gray-100">
+    <%- include('../partials/nav') %>
+
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <h2 class="text-4xl text-red-400 font-bold text-center mb-10">
+          Hey! host Here are your registered homes:
+        </h2>
+
+        <div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <% registeredHomes.forEach(home=> { %>
+            <div
+              class="bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 flex flex-col">
+
+              <!-- Image -->
+              <div class="h-64 overflow-hidden">
+                <img src="<%= home.photo %>" alt="House Image"
+                  class="w-full h-full object-cover transform hover:scale-105 transition duration-500" />
+              </div>
+
+              <!-- Content -->
+              <div class="p-6 flex flex-col flex-grow justify-between">
+                <div class="mb-4">
+                  <h3 class="text-2xl font-semibold text-gray-100 mb-1">
+                    <%= home.houseName %>
+                  </h3>
+                  <p class="text-sm text-gray-400 mb-2">
+                    📍 <%= home.location %>
+                  </p>
+                  <p class="text-sm text-gray-300 mb-2">
+                    💰 <strong>Price:</strong> ₹<%= home.price %> / night
+                  </p>
+                  <div class="flex items-center text-sm text-yellow-400">
+                    ⭐ <span class="ml-1 text-gray-200">
+                      <%= home.rating ? home.rating : 'N/A' %>/5
+                    </span>
+                  </div>
+                </div>
+                <!-- Edit Button -->
+                <div class="flex gap-4 text-center">
+                  <a href="/host/edit-home/<%= home._id %>?editing=true"
+                    class="w-25 bg-blue-600 text-white p-2 text-sm rounded-lg hover:bg-blue-700 transition duration-300">
+                    Edit
+                  </a>
+                  <!-- Delete Button -->
+                  <form action="/host/delete-home/<%=home._id%>" method="post">
+                    <button type="submit"
+                      class="w-25 bg-red-600 text-white p-2 text-sm rounded-lg hover:bg-red-700 transition duration-300">
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+      </main>
+  </body>
+
+  </html>
