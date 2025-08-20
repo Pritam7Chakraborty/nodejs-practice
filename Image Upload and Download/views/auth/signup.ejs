@@ -1,0 +1,147 @@
+<%- include('../partials/head') %>
+  </head>
+
+  <body class="bg-gray-900 text-gray-100">
+    <%- include('../partials/nav') %>
+
+      <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+          <!-- Page Title -->
+          <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-100">Create your account</h1>
+          </div>
+
+          <!-- Signup Form -->
+          <div class="bg-gray-800 rounded-lg shadow-md p-8">
+            <form action="/signup" method="POST" class="space-y-6">
+
+              <%- include('../partials/errors') %>
+                  <!-- First & Last Name -->
+                  <div class="grid grid-cols-2 gap-4">
+                    <!-- First Name -->
+                    <div class="relative">
+                      <label for="firstName" class="block text-sm font-medium text-gray-100 mb-2">First Name</label>
+                      <span class="absolute left-3 top-10 text-gray-400">👤</span>
+                      <input type="text" id="firstName" name="firstName"
+                        value="<%= oldInput.firstName ? oldInput.firstName : '' %>" required
+                        class="w-full pl-10 px-4 py-2 border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                        placeholder="First name" />
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="relative">
+                      <label for="lastName" class="block text-sm font-medium text-gray-100 mb-2">Last Name</label>
+                      <span class="absolute left-3 top-10 text-gray-400">👤</span>
+                      <input type="text" id="lastName" name="lastName"
+                        value="<%= oldInput.lastName ? oldInput.lastName : '' %>" required
+                        class="w-full pl-10 px-4 py-2 border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                        placeholder="Last name" />
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="relative">
+                    <label for="email" class="block text-sm font-medium text-gray-100 mb-2">Email</label>
+                    <span class="absolute left-3 top-10 text-gray-400">📧</span>
+                    <input type="email" id="email" name="email" value="<%= oldInput.email ? oldInput.email : '' %>"
+                      required
+                      class="w-full pl-10 px-4 py-2 border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="Enter your email (test@pop.com)" />
+                  </div>
+
+                  <!-- Password -->
+                  <div class="relative">
+                    <label for="password" class="block text-sm font-medium text-gray-100 mb-2">Password</label>
+                    <span class="absolute left-3 top-10 text-gray-400">🔒</span>
+                    <input type="password" id="password" name="password" required
+                      class="w-full pl-10 pr-10 py-2 border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="Enter password" />
+                    <!-- Eye Icon -->
+                    <span data-toggle-id="password"
+                      class="absolute right-3 top-10 flex items-center cursor-pointer text-gray-400 hover:text-gray-200">
+                      👁
+                    </span>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="relative">
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-100 mb-2">Confirm
+                      Password</label>
+                    <span class="absolute left-3 top-10 text-gray-400">🔒</span>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required
+                      class="w-full pl-10 pr-10 py-2 border border-gray-700 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      placeholder="Confirm password" />
+                    <!-- Eye Icon -->
+                    <span data-toggle-id="confirmPassword"
+                      class="absolute right-3 top-10 flex items-center cursor-pointer text-gray-400 hover:text-gray-200">
+                      👁
+                    </span>
+                  </div>
+
+                  <!-- User Type -->
+                  <div>
+                    <label class="block text-sm font-medium text-gray-100 mb-2">User Type</label>
+                    <div class="flex space-x-6">
+                      <!-- Guest -->
+                      <label class="flex items-center space-x-2">
+                        <input type="radio" name="userType" value="Guest" <%=oldInput.userType==="Guest" ? "checked"
+                          : "" %>
+                        class="h-4 w-4 text-red-500 border-gray-700 bg-gray-900 focus:ring-red-500"
+                        />
+                        <span class="text-gray-100">Guest</span>
+                      </label>
+
+                      <!-- Host -->
+                      <label class="flex items-center space-x-2">
+                        <input type="radio" name="userType" value="Host" <%=oldInput.userType==="Host" ? "checked" : ""
+                          %>
+                        class="h-4 w-4 text-red-500 border-gray-700 bg-gray-900 focus:ring-red-500"
+                        />
+                        <span class="text-gray-100">Host</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Terms & Conditions -->
+                  <div class="flex items-center">
+                    <input type="checkbox" id="termsAccepted" name="termsAccepted" required
+                      class="h-4 w-4 text-red-500 bg-gray-900 border-gray-700 rounded focus:ring-red-500" />
+                    <label for="termsAccepted" class="ml-2 text-sm text-gray-100">
+                      I agree to the <a href="/terms" class="text-red-400 hover:text-red-300">Terms & Conditions</a>
+                    </label>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <button type="submit"
+                    class="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300 font-medium">
+                    Sign up
+                  </button>
+            </form>
+          </div>
+
+          <!-- Already have an account -->
+          <div class="text-center">
+            <span class="text-gray-400">Already have an account? </span>
+            <a href="/login" class="text-red-400 hover:text-red-300 font-medium">Log in here</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle Password Script -->
+      <script>
+        document.querySelectorAll("[data-toggle-id]").forEach(icon => {
+          icon.addEventListener("click", () => {
+            const input = document.getElementById(icon.dataset.toggleId);
+            if (input.type === "password") {
+              input.type = "text";
+              icon.textContent = "🙈";
+            } else {
+              input.type = "password";
+              icon.textContent = "👁";
+            }
+          });
+        });
+      </script>
+  </body>
+
+  </html>
